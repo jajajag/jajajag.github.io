@@ -61,8 +61,8 @@
 <script>
     videoTemp = $('#jagVideo');
     $('#jaja').on('click', function() {
-        if (videoTemp.paused)
-            videoTemp.play();
+        if (videoTemp[0].paused)
+            videoTemp[0].play();
     });
     
     $(window).resize(
