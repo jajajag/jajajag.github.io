@@ -26,7 +26,7 @@
 <div class="container">
     <div class="embed-responsive embed-responsive-16by9">
         <!-- Use video tab from HTML5 where id is myVideo, set the poster and size but not invoke the control. -->
-        <video class="embed-responsive-item" id="jagVideo">
+        <video class="embed-responsive-item" id="jagVideo"  autoplay="autoplay">
             <!-- Locate the source video. -->
             <source src="videos/moha.mp4" type="video/mp4">
             <!-- Give alert if the browser does not support html5 player. -->
@@ -60,10 +60,7 @@
 
 <script>
     videoTemp = $('#jagVideo');
-    $('#jaja').on('click', function() {
-        if (videoTemp[0].paused)
-            videoTemp[0].play();
-    });
+    videoTemp[0].pause();
     
     $(window).resize(
     function(){
