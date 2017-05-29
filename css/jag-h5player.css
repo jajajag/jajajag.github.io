@@ -12,6 +12,7 @@ video::-webkit-media-controls-panel {
 video {
     /* Fit the container if the resolution is not compatible. */
     object-fit: fill;
+    background: black;
 }
 
 #test {
