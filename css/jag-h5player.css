@@ -1,0 +1,56 @@
+/* Make fullscreen mode 100% of the screen. */
+:-webkit-full-screen video {
+    width: 100%;
+    height: 100%;
+}
+
+/* Remove the control panel from fullscreen mode. */
+video::-webkit-media-controls-panel {
+    display: none !important
+}
+
+video {
+    /* Fit the container if the resolution is not compatible. */
+    object-fit: fill;
+}
+
+#test {
+    position: relative;
+    /*max-width: 100%;
+    height: auto;
+    display: block;*/
+    font-size: 10px;
+}
+
+.progressBar {
+    position: relative;
+    width: 100%;
+    height: 10px;
+    backgroud-color: #000;
+}
+
+.timeBar {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 0;
+    height: 100%;
+    background-color: #ccc;
+}
+
+.progressBar {
+    position: relative;
+    width: 100%;
+    height: height:10px;
+    backgroud-color: #000;
+}
+
+.bufferBar {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 0;
+    height: 100%;
+    background-color: #ccc;
+}
+

@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<!--<html lang="zh-CN">-->
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!-- Compatible with portable devices. -->
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no, maximum-scale=1">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <title>jag-h5player</title>
+    <!-- Jquery cdn from google. -->
+    <!--<script src="jquery-3.2.1.js"></script>-->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <!-- Bootstrap context-menu cdn from bootcdn. -->
+    <script src="https://cdn.bootcss.com/bootstrap-contextmenu/0.3.4/bootstrap-contextmenu.min.js"></script>
+    <!-- Use async to wait for the domComplete. -->
+    <script type="text/javascript" src="js/jag-h5player.js" async="async"></script>
+    <!-- Bootstrap cdn from bootcdn. -->
+    <!--<link href="bootstrap-3.3.7-dist/css/bootstrap.min.css" rel="stylesheet">-->
+    <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="css/jag-h5player.css">
+</head>
+<body>
+<div class="container">
+    <div class="embed-responsive embed-responsive-16by9">
+        <!-- Use video tab from HTML5 where id is myVideo, set the poster and size but not invoke the control. -->
+        <video class="embed-responsive-item" id="jagVideo">
+            <!-- Locate the source video. -->
+            <source src="videos/moha.mp4" type="video/mp4">
+            <!-- Give alert if the browser does not support html5 player. -->
+            <p>Your browser does not support this video player.</p>
+        </video>
+    </div>
+<!--    <div class="progress">
+        <div class="progress-bar" role="progressbar" aria-valuenow="70"
+             aria-valuemin="0" aria-valuemax="100" style="width:70%">
+            <span class="sr-only">70% Complete</span>
+        </div>
+    </div>-->
+
+    <div id="overlay">
+        <span class="glyphicon glyphicon-fullscreen" id="test"></span>
+        <span class="glyphicon glyphicon-fullscreen" id="test2"></span>
+        <!--<button type="button" class="btn btn-lg btn-default" id="test">Default</button>-->
+    </div>
+    <div id="context-menu">
+        <ul class="dropdown-menu" role="menu">
+            <li><a tabindex="-1">Pause/Play</a></li>
+            <li><a tabindex="-1">Fullscreen/Window</a></li>
+            <li><a tabindex="-1">Playback rate</a></li>
+            <!--<li class="divider"></li>-->
+            <li><a tabindex="-1">About jag-h5player</a></li>
+            <li><a tabindex="-1">Close</a></li>
+        </ul>
+    </div>
+</div>
+
+<script>
+    $(window).resize(
+    function(){
+
+    var docHeight = $('#jagVideo').height(); //获取窗口高度
+    var docWidth = $('#jagVideo').width(); //获取窗口高度
+    left = $('#jagVideo').offsetParent()[0].offsetLeft;
+
+
+    $('#overlay')
+        .height(docHeight / 10)
+        .css({
+            'opacity': 0.5, //透明度
+            'position': 'absolute',
+            'top': docHeight / 10 * 9,
+            'left': left,
+            'width': docWidth,
+            'z-index': 2 //保证这个悬浮层位于其它内容之上
+        });
+    $('#test').css({'position': 'relative', 'font-size': docHeight / 10 - 1});
+        $('#test2').css({'position': 'relative', 'font-size': docHeight / 10 - 1});
+
+    //setTimeout(function(){$('#overlay').fadeOut('slow')}, 3000); //设置3秒后覆盖层自动淡出
+});</script>
+</body>
+</html>
