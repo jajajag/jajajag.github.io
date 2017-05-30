@@ -6,22 +6,70 @@
 
 /* Remove the control panel from fullscreen mode. */
 video::-webkit-media-controls-panel {
-    display: none !important
+    display: none !important;
 }
 
 video {
     /* Fit the container if the resolution is not compatible. */
     object-fit: fill;
+<<<<<<< Updated upstream
+=======
+    /* ios默认不显示视频，为ios添加背景。 */
+>>>>>>> Stashed changes
     background: black;
 }
 
-#test {
-    position: relative;
-    /*max-width: 100%;
-    height: auto;
-    display: block;*/
-    font-size: 10px;
+/* 进度条样式。 */
+.progress-bar-container {
+    width: 100%;
+    height: 5px;
 }
+
+.progress-bar-box {
+    opacity: 0.3;
+    height: 100%;
+    margin-left: 15px;
+    margin-right: 15px;
+    background-color: grey;
+}
+
+/* 进度条颜色(淡绿色)。 */
+#jag-progress-bar {
+    background-color: #6cffd4;
+}
+
+/* 缓冲条颜色(白色)。 */
+#jag-buffer-bar {
+    background-color: white;
+}
+
+
+/* 控制条按钮样式。 */
+.button-container {
+    margin-top: 5px;
+}
+
+#play-button {
+    margin-left: 20px;
+    color: white;
+    font-size: 18px;
+}
+
+#volume-button {
+    margin-left: 10px;
+    color: white;
+    font-size: 18px;
+}
+
+.fullscreen-button {
+    margin-left: 100px;
+    color: white;
+    font-size: 18px;
+}
+
+
+
+
 
 .progressBar {
     position: relative;
@@ -42,7 +90,7 @@ video {
 .progressBar {
     position: relative;
     width: 100%;
-    height: height:10px;
+    height: 10px;
     backgroud-color: #000;
 }
 
@@ -55,3 +103,32 @@ video {
     background-color: #ccc;
 }
 
+/**/
+-webkit-full-screen {
+
+    /* properties */
+}
+:-moz-full-screen {
+    /* properties */
+}
+:-ms-fullscreen {
+    /* properties */
+}
+:full-screen { /*pre-spec */
+    /* properties */
+}
+:fullscreen { /* spec */
+    /* properties */
+}
+/* deeper elements */
+:-webkit-full-screen video {
+    width: %;
+    height: %;
+}
+/* styling the backdrop*/
+::backdrop {
+    /* properties */
+}
+::-ms-backdrop {
+    /* properties */
+}
