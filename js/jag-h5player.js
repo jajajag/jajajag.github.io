@@ -153,13 +153,13 @@ function startBuffer() {
     bufferBar.css('width', percentage + '%');
     /* 只要未完全缓冲，就每500ms更新一次缓冲条。 */
     if(currentBuffer < maxDuration) {
-        setTimeout(startBuffer, 500);
+        setTimeout(startBuffer, 1000);
     } else {
         bufferBar.css('width', '100%');
     }
 };
 /* 开始第一次更新缓冲条。  */
-setTimeout(startBuffer, 500);
+setTimeout(startBuffer, 1000);
 
 /* 点击播放按钮时，开始或暂停视频。 */
 playButton.on('click', function() {
