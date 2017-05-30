@@ -68,44 +68,5 @@
             <li><a tabindex="-1">Close</a></li>
         </ul>
     </div>
-    <button id="jaja">hehe</button>
-</div>
-<<<<<<< Updated upstream
-
-<script>
-    videoTemp = $('#jagVideo');
-    $('#jaja').on('click', function() {
-        if (videoTemp[0].paused) {
-            videoTemp[0].play();
-        } else {
-            videoTemp[0].pause();
-        }
-    });
-    
-    $(window).resize(
-    function(){
-
-    var docHeight = $('#jagVideo').height(); //获取窗口高度
-    var docWidth = $('#jagVideo').width(); //获取窗口高度
-    left = $('#jagVideo').offsetParent()[0].offsetLeft;
-
-
-    $('#overlay')
-        .height(docHeight / 10)
-        .css({
-            'opacity': 0.5, //透明度
-            'position': 'absolute',
-            'top': docHeight / 10 * 9,
-            'left': left,
-            'width': docWidth,
-            'z-index': 2 //保证这个悬浮层位于其它内容之上
-        });
-    $('#test').css({'position': 'relative', 'font-size': docHeight / 10 - 1});
-        $('#test2').css({'position': 'relative', 'font-size': docHeight / 10 - 1});
-
-    //setTimeout(function(){$('#overlay').fadeOut('slow')}, 3000); //设置3秒后覆盖层自动淡出
-});</script>
-=======
->>>>>>> Stashed changes
 </body>
 </html>
