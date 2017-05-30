@@ -267,19 +267,6 @@ var updatebar = function(x) {
     video[0].currentTime = maxduration * percentage / 100;
 };
 
-//loop to get HTML5 video buffered data
-var startBuffer = function() {
-    var maxduration = video[0].duration;
-    var currentBuffer = video[0].buffered.end(0);
-    var percentage = 100 * currentBuffer / maxduration;
-    $('.bufferBar').css('width', percentage+'%');
-
-    if(currentBuffer < maxduration) {
-        setTimeout(startBuffer, 500);
-    }
-};
-//setTimeout(startBuffer, 500);
-
 //Volume control clicked
 $('.volumeBar').on('mousedown', function(e) {
     var position = e.pageX - volume.offset().left;
