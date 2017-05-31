@@ -16,6 +16,16 @@ video {
     background: black;
 }
 
+/* 设置控制栏文字不可选。 */
+#control-panel {
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
 /* 进度条样式。 */
 .progress-bar-container {
     width: 100%;
@@ -40,65 +50,57 @@ video {
     background-color: white;
 }
 
-
-/* 控制条按钮样式。 */
-.button-container {
-    margin-top: 5px;
-}
-
 #play-button {
-    margin-left: 20px;
+    position: absolute;
+    margin-top: 11px;
+    margin-left: 25px;
     color: white;
-    font-size: 18px;
+    font-size: 21px;
 }
 
 #volume-button {
-    margin-left: 10px;
+    position: absolute;
+    margin-top: 11px;
+    margin-left: 56px;
+    top: 2px;
+    color: white;
+    font-size: 21px;
+}
+
+#fullscreen-button {
+    position: absolute;
+    margin-top: 12px;
+    right: 27px;
     color: white;
     font-size: 18px;
 }
 
-.fullscreen-button {
-    margin-left: 100px;
+#playback-button {
+    position: absolute;
+    margin-top: 12px;
+    right: 58px;
     color: white;
     font-size: 18px;
 }
 
-
-
-
-
-.progressBar {
-    position: relative;
-    width: 100%;
-    height: 10px;
-    backgroud-color: #000;
-}
-
-.timeBar {
+/* 播放速率列表。  */
+.playback-list {
+    right: 36px;
+    bottom: 26px;
     position: absolute;
-    top: 0;
-    left: 0;
-    width: 0;
-    height: 100%;
-    background-color: #ccc;
+    width: 65px;
+    opacity: 0.5;
+    display: none;
 }
 
-.progressBar {
-    position: relative;
-    width: 100%;
-    height: 10px;
-    backgroud-color: #000;
+/* 播放速率列表单个按钮大小。 */
+.playback-list .list-group-item {
+    height: 36px;
+    padding-top: 8px;
+    background-color: black;
+    border-color: black;
 }
 
-.bufferBar {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 0;
-    height: 100%;
-    background-color: #ccc;
-}
 
 /**/
 -webkit-full-screen {

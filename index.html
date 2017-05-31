@@ -13,8 +13,6 @@
     <!-- Jquery cdn from google. -->
     <!--<script src="jquery-3.2.1.js"></script>-->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <!-- Bootstrap context-menu cdn from bootcdn. -->
-    <script src="https://cdn.bootcss.com/bootstrap-contextmenu/0.3.4/bootstrap-contextmenu.min.js"></script>
     <!-- Use async to wait for the domComplete. -->
     <script type="text/javascript" src="js/jag-h5player.js" async="async"></script>
     <!-- Bootstrap cdn from bootcdn. -->
@@ -38,32 +36,32 @@
     <!-- 控制栏 -->
     <div id="control-panel">
         <div class="progress-bar-container">
-            <div class="progress progress-bar-box">
+            <div class="progress progress-striped progress-bar-box">
                 <div class="progress-bar" id="jag-progress-bar"></div>
                 <div class="progress-bar" id="jag-buffer-bar"></div>
             </div>
         </div>
-        <div class="button-container">
+        <div>
             <span class="glyphicon glyphicon-play" id="play-button"></span>
             <span class="glyphicon glyphicon-volume-up" id="volume-button"></span>
             <!--<span class="progress-bar progress-bar-success" style="margin-left: 60px; width: 10px; height: 5px; color: white"></span>-->
-            <!--<span class="glyphicon glyphicon-pause play-button"></span>-->
-            <span class="glyphicon glyphicon-fullscreen fullscreen-button"></span>
+            <span class="glyphicon glyphicon-forward" id="playback-button"></span>
+            <span class="glyphicon glyphicon-fullscreen" id="fullscreen-button"></span>
         </div>
-        <!--<button type="button" class="btn btn-lg btn-default" id="test">Default</button>-->
-    </div>
-    <!-- Context menu -->
-    <!-- 右键菜单 -->
-    <div id="context-menu">
-        <ul class="dropdown-menu" role="menu">
-            <li><a tabindex="-1">Pause/Play</a></li>
-            <li><a tabindex="-1">Fullscreen/Window</a></li>
-            <li><a tabindex="-1">Playback rate</a></li>
-            <!--<li class="divider"></li>-->
-            <li><a tabindex="-1">jag-h5player 2017</a></li>
-            <li><a tabindex="-1">Close</a></li>
-        </ul>
+        <div class="list-group playback-list">
+            <button type="button" class="list-group-item">0.5</button>
+            <button type="button" class="list-group-item">0.75</button>
+            <button type="button" class="list-group-item active">1.0</button>
+            <button type="button" class="list-group-item">1.25</button>
+            <button type="button" class="list-group-item">1.5</button>
+            <button type="button" class="list-group-item">2.0</button>
+        </div>
     </div>
 </div>
+<<<<<<< Updated upstream
+=======
+
+
+>>>>>>> Stashed changes
 </body>
 </html>
