@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<!--<html lang="zh-CN">-->
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!-- Compatible with portable devices. -->
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no, maximum-scale=1">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <title>jag-h5player</title>
+    <!-- Jquery cdn from google. -->
+    <!--<script src="jquery-3.2.1.js"></script>-->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <!-- Use async to wait for the domComplete. -->
+    <script type="text/javascript" src="js/jag-h5player.js" async="async"></script>
+    <!-- Bootstrap cdn from bootcdn. -->
+    <!--<link href="bootstrap-3.3.7-dist/css/bootstrap.min.css" rel="stylesheet">-->
+    <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="css/jag-h5player.css">
+</head>
+<body>
+<div class="container">
+    <div class="embed-responsive embed-responsive-16by9">
+        <!-- Use video tab from HTML5 where id is myVideo, set the poster and size but not invoke the control. -->
+        <video class="embed-responsive-item" id="jag-video">
+            <!-- Locate the source video. -->
+            <source src="videos/moha.mp4" type="video/mp4">
+            <!-- Give alert if the browser does not support html5 player. -->
+            <!-- 提示该浏览器不支持html5播放器。 -->
+            <p>Your browser does not support this video player.</p>
+        </video>
+    </div>
+    <!-- Control panel -->
+    <!-- 控制栏 -->
+    <div id="control-panel">
+        <div class="progress-bar-container">
+            <div class="progress progress-striped progress-bar-box">
+                <div class="progress-bar" id="jag-progress-bar"></div>
+                <div class="progress-bar" id="jag-buffer-bar"></div>
+            </div>
+        </div>
+        <div>
+            <span class="glyphicon glyphicon-play" id="play-button"></span>
+            <span class="glyphicon glyphicon-volume-up" id="volume-button"></span>
+            <!--<span class="progress-bar progress-bar-success" style="margin-left: 60px; width: 10px; height: 5px; color: white"></span>-->
+            <span class="glyphicon glyphicon-forward" id="playback-button"></span>
+            <span class="glyphicon glyphicon-fullscreen" id="fullscreen-button"></span>
+        </div>
+        <div class="list-group playback-list">
+            <button type="button" class="list-group-item">0.5</button>
+            <button type="button" class="list-group-item">0.75</button>
+            <button type="button" class="list-group-item active">1.0</button>
+            <button type="button" class="list-group-item">1.25</button>
+            <button type="button" class="list-group-item">1.5</button>
+            <button type="button" class="list-group-item">2.0</button>
+        </div>
+    </div>
+</div>
+
+
+</body>
+</html>
