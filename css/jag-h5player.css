@@ -1,3 +1,4 @@
+/* 1. 视频样式 */
 /* Make fullscreen mode 100% of the screen. */
 :-webkit-full-screen video {
     width: 100%;
@@ -16,25 +17,36 @@ video {
     background: black;
 }
 
+/* 2. 控制栏样式 */
 /* 设置控制栏文字不可选。 */
 #control-panel {
+    /* 绝对定位确定控制栏位置。 */
+    position: absolute;
+    height: 50px;
     -webkit-touch-callout: none;
     -webkit-user-select: none;
     -khtml-user-select: none;
     -moz-user-select: none;
     -ms-user-select: none;
     user-select: none;
+    display: none;
 }
 
 /* 进度条样式。 */
 .progress-bar-container {
     width: 100%;
-    height: 5px;
+    height: 10px;
+}
+
+/* 用一个完全空的div站位。 */
+.progress-empty {
+    opacity: 0;
+    height: 8px;
 }
 
 .progress-bar-box {
     opacity: 0.3;
-    height: 100%;
+    height: 5px;
     margin-left: 15px;
     margin-right: 15px;
     background-color: grey;
@@ -42,7 +54,9 @@ video {
 
 /* 进度条颜色(淡绿色)。 */
 #jag-progress-bar {
-    background-color: #6cffd4;
+    background-color: lime;
+    /* 让颜色更浅。 */
+    opacity: 0.5;
 }
 
 /* 缓冲条颜色(白色)。 */
@@ -50,9 +64,22 @@ video {
     background-color: white;
 }
 
+/* 进度条按钮。 */
+#progress-button {
+    /* 使用绝对定位。 */
+    position: absolute;
+    font-size: 15px;
+    /* 颜色为淡蓝色。 */
+    color: aqua;
+    opacity: 0.8;
+    /* 高度差和初始左偏移量。 */
+    top: 4px;
+    left: 7px;
+}
+
 #play-button {
     position: absolute;
-    margin-top: 11px;
+    margin-top: 19px;
     margin-left: 25px;
     color: white;
     font-size: 21px;
@@ -60,16 +87,15 @@ video {
 
 #volume-button {
     position: absolute;
-    margin-top: 11px;
-    margin-left: 56px;
-    top: 2px;
+    margin-top: 21px;
+    margin-left: 64px;
     color: white;
     font-size: 21px;
 }
 
 #fullscreen-button {
     position: absolute;
-    margin-top: 12px;
+    margin-top: 21px;
     right: 27px;
     color: white;
     font-size: 18px;
@@ -77,13 +103,13 @@ video {
 
 #playback-button {
     position: absolute;
-    margin-top: 12px;
-    right: 58px;
+    margin-top: 20px;
+    right: 64px;
     color: white;
     font-size: 18px;
 }
 
-/* 播放速率列表。  */
+/* 3. 播放速率列表样式 */
 .playback-list {
     right: 36px;
     bottom: 26px;
@@ -99,35 +125,4 @@ video {
     padding-top: 8px;
     background-color: black;
     border-color: black;
-}
-
-
-/**/
--webkit-full-screen {
-
-    /* properties */
-}
-:-moz-full-screen {
-    /* properties */
-}
-:-ms-fullscreen {
-    /* properties */
-}
-:full-screen { /*pre-spec */
-    /* properties */
-}
-:fullscreen { /* spec */
-    /* properties */
-}
-/* deeper elements */
-:-webkit-full-screen video {
-    width: %;
-    height: %;
-}
-/* styling the backdrop*/
-::backdrop {
-    /* properties */
-}
-::-ms-backdrop {
-    /* properties */
 }

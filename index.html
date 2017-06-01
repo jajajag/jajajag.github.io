@@ -21,44 +21,51 @@
     <link rel="stylesheet" type="text/css" href="css/jag-h5player.css">
 </head>
 <body>
+<!-- 视频播放器容器 -->
 <div class="container">
+    <!--将视频区域设定为16：9比例自适应。 -->
     <div class="embed-responsive embed-responsive-16by9">
-        <!-- Use video tab from HTML5 where id is myVideo, set the poster and size but not invoke the control. -->
-        <video class="embed-responsive-item" id="jag-video">
-            <!-- Locate the source video. -->
-            <source src="videos/moha.mp4" type="video/mp4">
-            <!-- Give alert if the browser does not support html5 player. -->
-            <!-- 提示该浏览器不支持html5播放器。 -->
-            <p>Your browser does not support this video player.</p>
-        </video>
-    </div>
-    <!-- Control panel -->
-    <!-- 控制栏 -->
-    <div id="control-panel">
-        <div class="progress-bar-container">
-            <div class="progress progress-striped progress-bar-box">
-                <div class="progress-bar" id="jag-progress-bar"></div>
-                <div class="progress-bar" id="jag-buffer-bar"></div>
+        <!--用于全屏的区域，包括视频和控制栏。 -->
+        <div class="embed-responsive-item" id="fullscreen-item">
+            <!--1. 视频播放器 -->
+            <video id="jag-video">
+                <!-- Locate the source video. -->
+                <source src="videos/moha.mp4" type="video/mp4">
+                <!-- Give alert if the browser does not support html5 player. -->
+                <!-- 提示该浏览器不支持html5播放器。 -->
+                <p>Your browser does not support this video player.</p>
+            </video>
+            <!-- Control panel -->
+            <!-- 2. 控制栏 -->
+            <div id="control-panel">
+                <div class="progress-bar-container">
+                    <!--用一个全空的div来站位，增加进度条可点区域大小。 -->
+                    <div class="progress-empty"></div>
+                    <div class="progress progress-bar-box">
+                        <div class="progress-bar" id="jag-progress-bar"></div>
+                        <div class="progress-bar" id="jag-buffer-bar"></div>
+                    </div>
+                    <span class="glyphicon glyphicon-record" id="progress-button"></span>
+                </div>
+                <div>
+                    <span class="glyphicon glyphicon-play" id="play-button"></span>
+                    <span class="glyphicon glyphicon-volume-up" id="volume-button"></span>
+                    <!--<span class="progress-bar progress-bar-success" style="margin-left: 60px; width: 10px; height: 5px; color: white"></span>-->
+                    <span class="glyphicon glyphicon-forward" id="playback-button"></span>
+                    <span class="glyphicon glyphicon-fullscreen" id="fullscreen-button"></span>
+                </div>
+                <div class="list-group playback-list">
+                    <!--3. 播放速率悬浮面板 -->
+                    <button type="button" class="list-group-item">0.5</button>
+                    <button type="button" class="list-group-item">0.75</button>
+                    <button type="button" class="list-group-item active">1.0</button>
+                    <button type="button" class="list-group-item">1.25</button>
+                    <button type="button" class="list-group-item">1.5</button>
+                    <button type="button" class="list-group-item">2.0</button>
+                </div>
             </div>
-        </div>
-        <div>
-            <span class="glyphicon glyphicon-play" id="play-button"></span>
-            <span class="glyphicon glyphicon-volume-up" id="volume-button"></span>
-            <!--<span class="progress-bar progress-bar-success" style="margin-left: 60px; width: 10px; height: 5px; color: white"></span>-->
-            <span class="glyphicon glyphicon-forward" id="playback-button"></span>
-            <span class="glyphicon glyphicon-fullscreen" id="fullscreen-button"></span>
-        </div>
-        <div class="list-group playback-list">
-            <button type="button" class="list-group-item">0.5</button>
-            <button type="button" class="list-group-item">0.75</button>
-            <button type="button" class="list-group-item active">1.0</button>
-            <button type="button" class="list-group-item">1.25</button>
-            <button type="button" class="list-group-item">1.5</button>
-            <button type="button" class="list-group-item">2.0</button>
         </div>
     </div>
 </div>
-
-
 </body>
 </html>
