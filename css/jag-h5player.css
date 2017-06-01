@@ -126,3 +126,18 @@ video {
     background-color: black;
     border-color: black;
 }
+
+/* 去除jquery mobile底部的loading标志。 */
+.ui-loader-default {
+    display: none
+}
+
+.ui-mobile-viewport {
+    border: none;
+}
+
+.ui-page {
+    padding: 0;
+    margin: 0;
+    outline: 0
+}
