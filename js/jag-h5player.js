@@ -44,10 +44,9 @@ $(document).on('keydown', function(event) {
 *  singleClickFlag is a lock of clicks. */
 var singleClickFlag = true;
 /* Listening to mouse single click event. */
-video.on('tap', function() {
-    /* 如果是移动设备则立即执行。 */
+video.on('click', function() {
+    /* 如果是移动设备则不执行。 */
     if (isMobile) {
-        playOrPause();
         return;
     }
     if (singleClickFlag) {
@@ -97,11 +96,21 @@ function getFullscreen() {
 }
 
 /* Listening to mouse double click event.
-*  PC端双击全屏。 */
-video.on('dblclick', function() {if (!isMobile) {getFullscreen();}});
+*  PC端双击全屏，移动端双击暂停。 */
+video.on('dblclick', function() {
+    if (isMobile) {
+        playOrPause();
+    } else {
+        getFullscreen();
+    }
+});
 
 /* 移动端长按全屏。 */
-fullscreenItem.on('taphold', function() {if (isMobile) {getFullscreen();}});
+fullscreenItem.on('taphold', function() {
+    if (isMobile) {
+        getFullscreen();
+    }
+});
 
 
 /* 3. 控制栏 */
