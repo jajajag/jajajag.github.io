@@ -98,7 +98,7 @@ function getFullscreen() {
 
 /* Listening to mouse double click event.
 *  监听鼠标双击事件。 */
-video.on('dblclick', getFullscreen);
+video.on('dblclick', function() {if (!isMobile) {getFullscreen();}});
 
 video.on('taphold', function() {if (isMobile) {getFullscreen();}});
 
@@ -298,8 +298,6 @@ video.on('volumechange', function() {
 video.contextmenu(function() {
     return false;
 });
-
-
 
 
 
