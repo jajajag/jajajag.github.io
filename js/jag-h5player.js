@@ -97,10 +97,11 @@ function getFullscreen() {
 }
 
 /* Listening to mouse double click event.
-*  监听鼠标双击事件。 */
+*  PC端双击全屏。 */
 video.on('dblclick', function() {if (!isMobile) {getFullscreen();}});
 
-video.on('taphold', function() {if (isMobile) {getFullscreen();}});
+/* 移动端长按全屏。 */
+fullscreenItem.on('taphold', function() {if (isMobile) {getFullscreen();}});
 
 
 /* 3. 控制栏 */
@@ -243,7 +244,7 @@ video.on('mousemove', function() {
     /* 每次在屏幕上移动时更新控制栏。 */
     rebuildControlPanel();
     /* 如果鼠标在屏幕上移动，则显示控制条并重设计时器。 */
-    controlPanel.show();
+    controlPanel.css('display', 'block');
     controlPanelTimer = 4000;
 });
 
@@ -260,7 +261,8 @@ controlPanel.on('mouseout', function() {
 function controlPanelHide() {
     /* 若计时器已归零并且鼠标不在控制栏上，则隐藏控制栏。 */
     if (controlPanelTimer == 0 && !onControlPanelFlag) {
-        controlPanel.hide();
+        /* 需要设置为none，否则移动端会可以点击。 */
+        controlPanel.css('display', 'none');
     }
     /* 计时器每隔500ms更新一次。 */
     controlPanelTimer = (controlPanelTimer > 500) ? controlPanelTimer - 500 : 0;
