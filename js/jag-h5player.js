@@ -1,6 +1,8 @@
 /* Get the jQuery object from the dom tree. */
 var video = $('#jag-video');
 var fullscreenItem = $('#fullscreen-item');
+/* 判断设备是否为移动设备。 */
+var isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
 
 function playOrPause() {
     /* 暂停时播放，否则暂停。 */
@@ -42,7 +44,12 @@ $(document).on('keydown', function(event) {
 *  singleClickFlag is a lock of clicks. */
 var singleClickFlag = true;
 /* Listening to mouse single click event. */
-video.on('click', function() {
+video.on('tap', function() {
+    /* 如果是移动设备则立即执行。 */
+    if (isMobile) {
+        playOrPause();
+        return;
+    }
     if (singleClickFlag) {
         /* Set the lock if it is the first click. */
         singleClickFlag = false;
@@ -92,6 +99,8 @@ function getFullscreen() {
 /* Listening to mouse double click event.
 *  监听鼠标双击事件。 */
 video.on('dblclick', getFullscreen);
+
+video.on('taphold', function() {if (isMobile) {getFullscreen();}});
 
 
 /* 3. 控制栏 */
