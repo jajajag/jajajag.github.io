@@ -30,7 +30,7 @@
         <!--用于全屏的区域，包括视频和控制栏。 -->
         <div class="embed-responsive-item" id="fullscreen-item">
             <!--1. 视频播放器 -->
-            <video id="jag-video">
+            <video id="jag-video" -webkit-playsinline webkit-playsinline>
                 <!-- Locate the source video. -->
                 <source src="videos/moha.mp4" type="video/mp4">
                 <!-- Give alert if the browser does not support html5 player. -->

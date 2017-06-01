@@ -109,7 +109,9 @@ video.on('dblclick', function() {
 fullscreenItem.on('taphold', function() {
     if (isMobile) {
         getFullscreen();
+        alert('222');
     }
+    alert('111');
 });
 
 
