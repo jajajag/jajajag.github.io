@@ -105,16 +105,6 @@ video.on('dblclick', function() {
     }
 });
 
-/* 移动端长按全屏。 */
-fullscreenItem.on('taphold', function() {
-    if (isMobile) {
-        getFullscreen();
-        alert('222');
-    }
-    alert('111');
-});
-
-
 /* 3. 控制栏 */
 var controlPanel = $('#control-panel');
 var progressButton = $('#progress-button');
@@ -225,7 +215,15 @@ volumeButton.on('click', function() {
     video[0].muted = !video[0].muted;
 });
 
+/* 点击全屏按钮全屏。 */
 fullscreenButton.on('click', getFullscreen);
+
+/* 移动端长按屏幕全屏。 */
+video.on('taphold', function() {
+    if (isMobile) {
+        getFullscreen();
+    }
+});
 
 playbackButton.on('click', function() {
     /* 显示或者收回播放速率列表。 */
