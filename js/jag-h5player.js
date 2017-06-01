@@ -116,8 +116,6 @@ function rebuildControlPanel() {
         'width': video.width()
     });
 }
-/* 初始化控制栏。 */
-rebuildControlPanel();
 
 /* 监听浏览器窗口大小改变时控制栏改变大小。 */
 $(window).on('resize', rebuildControlPanel);
@@ -242,6 +240,8 @@ $('.list-group-item').on('click', function() {
 var controlPanelTimer = 0;
 var onControlPanelFlag = false;
 video.on('mousemove', function() {
+    /* 每次在屏幕上移动时更新控制栏。 */
+    rebuildControlPanel();
     /* 如果鼠标在屏幕上移动，则显示控制条并重设计时器。 */
     controlPanel.show();
     controlPanelTimer = 4000;
