@@ -78,7 +78,7 @@ video {
 
 /* 进度条按钮。 */
 #progress-button {
-    font-size: 35px;
+    font-size: 15px;
     /* 颜色为淡蓝色。 */
     opacity: 0.8;
     /* 高度差和初始左偏移量。 */

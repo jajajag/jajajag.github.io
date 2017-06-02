@@ -261,6 +261,30 @@ $(document).on('mouseup', function(event) {
     }
 });
 
+/* 移动端按钮处理。 */
+progressButton.on('touchstart', function(event) {
+    progressDragFlag = true;
+    updateProgressBar(event.touches[0].clientX);
+});
+
+$(document).on('touchmove', function(event) {
+    if(progressDragFlag) {
+        updateProgressBar(event.touches[0].clientX);
+    }
+});
+
+$(document).on('touchend', function(event) {
+    if (progressDragFlag) {
+        progressDragFlag = false;
+        updateProgressBar(event.touches[0].clientX);
+        var leftOffset = event.touches[0].clientX - video.offset().left - 15;
+        /* 获取控制栏总长度。 */
+        var progressWidth = video.width() - 30;
+        /* 点击坐标的左偏移量除以控制栏长度，和播放时间百分比相等。 */
+        video[0].currentTime = leftOffset / progressWidth * video[0].duration;
+    }
+});
+
 /* 在播放前调用此函数更新缓冲条。 */
 function startBuffer() {
     var maxDuration = video[0].duration;
@@ -343,12 +367,19 @@ $('.list-group-item').on('click', function() {
 /* 用一个计时器记录未移动时间, flag记录鼠标是否在控制栏上。 */
 var controlPanelTimer = 0;
 var onControlPanelFlag = false;
-video.on('mousemove', function() {
+
+fullscreenItem.on('mousemove', function() {
     /* 每次在屏幕上移动时更新控制栏。 */
     rebuildControlPanel();
     /* 如果鼠标在屏幕上移动，则显示控制条并重设计时器。 */
     controlPanel.css('display', 'block');
     controlPanelTimer = 4000;
+});
+
+fullscreenItem.on('tap', function() {
+    if (isMobile) {
+        controlPanelTimer = 4000;
+    }
 });
 
 /* 若在控制栏上则为true，否则为false。 */
