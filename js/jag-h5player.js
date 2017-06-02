@@ -236,20 +236,20 @@ function updateProgressBar(offsetX) {
     progressButton.css('left', 7 + leftOffset);
 }
 
-progressButton.mousedown(function(event) {
+progressButton.on('mousedown', function(event) {
     progressDragFlag = true;
     updateProgressBar(event.pageX);
 });
 
 /* 在鼠标移动过程中更新进度条。 */
-$(document).mousemove(function(event) {
+$(document).on('mousemove', function(event) {
     if(progressDragFlag) {
         updateProgressBar(event.pageX);
     }
 });
 
 /* 鼠标抬起时，更新播放时间。 */
-$(document).mouseup(function(event) {
+$(document).on('mouseup', function(event) {
     if (progressDragFlag) {
         progressDragFlag = false;
         updateProgressBar(event.pageX);
@@ -287,9 +287,9 @@ var playbackList = $('.playback-list');
 
 /* 下面是控制条按钮事件。 */
 /* 点击播放按钮时，开始或暂停视频。 */
-playButton.on('click', playOrPause);
+playButton.on('tap', playOrPause);
 
-volumeButton.on('click', function() {
+volumeButton.on('tap', function() {
     if (video[0].muted) {
         video[0].muted = false;
         $('#volume-bar').css('width', video[0].volume * 60);
@@ -300,7 +300,7 @@ volumeButton.on('click', function() {
 });
 
 /* 音量控制条。 */
-$('.volume-box').on('click', function(event) {
+$('.volume-box').on('tap', function(event) {
     /* 点击事件的偏移量为相对文档的偏移量减去视频偏移量减去控制栏。 */
     var leftOffset = event.pageX - video.offset().left - 93;
     /* 音量条长度为60px。 */
@@ -317,9 +317,9 @@ $('.volume-box').on('click', function(event) {
 });
 
 /* 点击全屏按钮全屏。 */
-fullscreenButton.on('click', getFullscreen);
+fullscreenButton.on('tap', getFullscreen);
 
-playbackButton.on('click', function() {
+playbackButton.on('tap', function() {
     /* 显示或者收回播放速率列表。 */
     playbackList.toggle('fast');
 });
@@ -360,20 +360,24 @@ controlPanel.on('mouseout', function() {
     onControlPanelFlag = false;
 });
 
-/* 若鼠标在按钮上变为亮紫色。 */
+/* 若鼠标在按钮上变为亮紫色。仅PC端。 */
 $('.jag-button').on('mouseover', function() {
-    $(this).css('color', 'fuchsia');
+    if (!isMobile) {
+        $(this).css('color', 'fuchsia');
+    }
 });
 
 /* 鼠标离开按钮变回白色。 */
 $('.jag-button').on('mouseout', function() {
-    $(this).css('color', 'white');
+    if (!isMobile) {
+        $(this).css('color', 'white');
+    }
 });
 
 /* 隐藏控制栏的函数。 */
 function controlPanelHide() {
     /* 若计时器已归零并且鼠标不在控制栏上，则隐藏控制栏。 */
-    if (controlPanelTimer == 0 && !onControlPanelFlag) {
+    if (controlPanelTimer == 0 && (isMobile || !onControlPanelFlag)) {
         /* 需要设置为none，否则移动端会可以点击。 */
         controlPanel.css('display', 'none');
     }
