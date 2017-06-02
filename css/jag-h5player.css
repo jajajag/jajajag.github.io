@@ -69,13 +69,17 @@ video {
     background-color: white;
 }
 
-/* 进度条按钮。 */
-#progress-button {
+/* 固定所有button的颜色。  */
+.jag-button {
     /* 使用绝对定位。 */
     position: absolute;
+    color: white;
+}
+
+/* 进度条按钮。 */
+#progress-button {
     font-size: 15px;
     /* 颜色为淡蓝色。 */
-    color: aqua;
     opacity: 0.8;
     /* 高度差和初始左偏移量。 */
     top: 4px;
@@ -83,18 +87,14 @@ video {
 }
 
 #play-button {
-    position: absolute;
     margin-top: 19px;
     margin-left: 25px;
-    color: white;
     font-size: 21px;
 }
 
 #volume-button {
-    position: absolute;
     margin-top: 20px;
     margin-left: 64px;
-    color: white;
     font-size: 23px;
 }
 
@@ -137,18 +137,14 @@ video {
 }
 
 #fullscreen-button {
-    position: absolute;
     margin-top: 21px;
     right: 27px;
-    color: white;
     font-size: 18px;
 }
 
 #playback-button {
-    position: absolute;
     margin-top: 19px;
     right: 64px;
-    color: white;
     font-size: 20px;
 }
 
