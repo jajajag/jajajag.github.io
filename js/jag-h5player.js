@@ -180,9 +180,13 @@ video.on('tap', function() {
                 if (!isMobile) {
                     /* Change the status of .*/
                     playOrPause();
-                } else {
-                    controlPanel.toggle();
-                    controlPanelTimer = 8000;
+                }  else {
+                    if (controlPanel.css('display') == 'none') {
+                        controlPanel.css('display', 'block');
+                        controlPanelTimer = 8000;
+                    } else {
+                        controlPanel.css('display', 'none');
+                    }
                 }
             }
             /* Open the clock if the function ends. */
