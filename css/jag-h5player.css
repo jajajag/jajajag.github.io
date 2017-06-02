@@ -1,4 +1,9 @@
 /* 1. 视频样式 */
+div.embed-responsive.embed-responsive-16by9 {
+    box-shadow: 0px 0px 10px #888888;
+    border-color: #888888;
+}
+
 /* Make fullscreen mode 100% of the screen. */
 :-webkit-full-screen video {
     width: 100%;
@@ -29,7 +34,7 @@ video {
     -moz-user-select: none;
     -ms-user-select: none;
     user-select: none;
-    display: none;
+    display: block;
 }
 
 /* 进度条样式。 */
@@ -87,10 +92,48 @@ video {
 
 #volume-button {
     position: absolute;
-    margin-top: 21px;
+    margin-top: 20px;
     margin-left: 64px;
     color: white;
-    font-size: 21px;
+    font-size: 23px;
+}
+
+.volume-box {
+    position: absolute;
+    height: 15px;
+    margin-top: 15px;
+    margin-left: 93px;
+    width: 75px;
+}
+
+.volume-empty {
+    opacity: 0;
+    height: 5px;
+}
+
+.volume-bar-box {
+    background-color: rgba(128, 128, 128, 0.3);
+    width: 60px;
+    height: 5px;
+}
+
+#volume-bar {
+    background-color: white;
+    opacity: 0.7;
+    width: 100%;
+    height: 100%;
+}
+
+/* 时间标签。 */
+#time-label {
+    opacity: 0.8;
+    position: absolute;
+    margin-top: 12px;
+    margin-left: 170px;
+    font-family: "Arial";
+    font-weight: lighter;
+    font-size: 16px;
+    color: white;
 }
 
 #fullscreen-button {
@@ -103,10 +146,10 @@ video {
 
 #playback-button {
     position: absolute;
-    margin-top: 20px;
+    margin-top: 19px;
     right: 64px;
     color: white;
-    font-size: 18px;
+    font-size: 20px;
 }
 
 /* 3. 播放速率列表样式 */

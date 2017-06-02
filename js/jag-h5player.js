@@ -105,6 +105,13 @@ video.on('dblclick', function() {
     }
 });
 
+/* 移动端长按屏幕全屏。 */
+video.on('taphold', function() {
+    if (isMobile) {
+        getFullscreen();
+    }
+});
+
 /* 3. 控制栏 */
 var controlPanel = $('#control-panel');
 var progressButton = $('#progress-button');
@@ -140,8 +147,37 @@ $(document).on("msfullscreenchange", function () {
 var progressBar = $('#jag-progress-bar');
 var bufferBar = $('#jag-buffer-bar');
 
+function timeToString(time) {
+    var seconds = Math.floor(time) % 60;
+    seconds = (seconds < 10) ? '0' + seconds : String(seconds);
+    var minutes = String(Math.floor(time / 60) % 60);
+    minutes = (minutes < 10) ? '0' + minutes : String(minutes);
+    var hours = String(Math.floor(time / 3600));
+    hours = (hours < 10) ? '0' + hours : String(hours);
+    return hours + ':' + minutes + ':' + seconds;
+}
+
+var durationLabel = '';
+/* Get duration from loadedmettadata. */
+/* 加载完元数据后计算总时间。 */
+video.on('loadedmetadata', function() {
+    durationLabel = timeToString(video[0].duration);
+    if (durationLabel.split(':')[0] == '00') {
+        durationLabel = durationLabel.substr(3);
+    }
+    /* 如果小时数不为0，则显示全部3位。 */
+    if (durationLabel.length > 5) {
+        $('#time-label').text('00:00:00/' + durationLabel);
+    } else {
+        $('#time-label').text('00:00/' + durationLabel);
+    }
+    /* 加载完全部元数据后构建控制栏。 */
+    rebuildControlPanel();
+});
+
 /* 根据当前时间更新进度条，缓冲条和按钮。 */
 video.on('timeupdate', function() {
+    /* 1. 更新进度条和缓冲条。  */
     var maxDuration = video[0].duration;
     /* 获取当前时间和缓冲条。 */
     var currentPos = video[0].currentTime;
@@ -163,6 +199,15 @@ video.on('timeupdate', function() {
         bufferBar.css('width', perBuffer + '%');
     } else {
         bufferBar.css('width', (100 - perCurrent) + '%');
+    }
+
+    /* 2. 更新时间标签。 */
+    /* 如果总时长超过1小时，则显示3位。 */
+    if (durationLabel.length > 5) {
+        $('#time-label').text(timeToString(currentPos) + '/' + durationLabel);
+    } else {
+        /* 否则只显示分钟和秒。 */
+        $('#time-label').text(timeToString(currentPos).substr(3) + '/' + durationLabel);
     }
 });
 
@@ -212,18 +257,34 @@ var playbackList = $('.playback-list');
 playButton.on('click', playOrPause);
 
 volumeButton.on('click', function() {
-    video[0].muted = !video[0].muted;
+    if (video[0].muted) {
+        video[0].muted = false;
+        $('#volume-bar').css('width', video[0].volume * 60);
+    } else {
+        video[0].muted = true;
+        $('#volume-bar').css('width', 0);
+    }
+});
+
+/* 音量控制条。 */
+$('.volume-box').on('click', function(event) {
+    /* 点击事件的偏移量为相对文档的偏移量减去视频偏移量减去控制栏。 */
+    var leftOffset = event.pageX - video.offset().left - 93;
+    /* 音量条长度为60px。 */
+    var percentage = leftOffset / 60;
+    /* 判断是否在音量条区域外(方便点击)。 */
+    percentage = (percentage >= 1) ? 1 : percentage;
+    /* 静音状态不修改音量条位置。 */
+    if (!video[0].muted) {
+        /* 音量条当前位置。 */
+        $('#volume-bar').css('width', leftOffset / 60 * 100 + '%');
+    }
+    /* 修改音量大小。 */
+    video[0].volume = percentage;
 });
 
 /* 点击全屏按钮全屏。 */
 fullscreenButton.on('click', getFullscreen);
-
-/* 移动端长按屏幕全屏。 */
-video.on('taphold', function() {
-    if (isMobile) {
-        getFullscreen();
-    }
-});
 
 playbackButton.on('click', function() {
     /* 显示或者收回播放速率列表。 */
@@ -315,10 +376,7 @@ video.contextmenu(function() {
 
 
 
-/* Get duration from loadedmettadata. */
-video.on('loadedmetadata', function() {
-    $('.duration').text(video[0].duration);
-});
+
 
 
 
@@ -360,10 +418,4 @@ var updatebar = function(x) {
 };
 
 
-//Volume control clicked
-$('.volumeBar').on('mousedown', function(e) {
-    var position = e.pageX - volume.offset().left;
-    var percentage = 100 * position / volume.width();
-    $('.volumeBar').css('width', percentage+'%');
-    video[0].volume = percentage / 100;
-});
+
