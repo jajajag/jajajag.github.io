@@ -34,7 +34,7 @@ video {
     -moz-user-select: none;
     -ms-user-select: none;
     user-select: none;
-    display: block;
+    display: none;
 }
 
 /* 进度条样式。 */
