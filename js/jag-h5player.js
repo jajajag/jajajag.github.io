@@ -26,7 +26,7 @@ function rebuildControlPanel() {
     controlPanel.css('width', video.width());
     if (isIOS) {
         /* 如果是ios，则音量条颜色为灰色 */
-        volumeBar.css('color', 'gray');
+        volumeBar.css('background-color', 'gray');
     }
 }
 
