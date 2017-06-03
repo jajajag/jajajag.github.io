@@ -36,7 +36,7 @@ var fullscreenItem = $('#fullscreen-item');
 function getFullscreen() {
     /* Check if the video is alrealy in fullscreen mode. */
     if (document.fullscreenElement || document.webkitFullscreenElement ||
-        document.mozFullScreenElement || document.msFullscreenElement) {
+        document.mozFullScreenElement || document.msFullscreenElement || document.webkitDisplayingFullscreen) {
         /* Exit fullscreen if corresponding element exists. */
         if (document.exitFullscreen) {
             document.exitFullscreen();
@@ -60,7 +60,6 @@ function getFullscreen() {
         } else if(video[0].webkitEnterFullscreen) {
             /* ios只允许调用video本身的全屏 */
             video[0].webkitEnterFullscreen();
-            video[0].webkitExitFullscreen();
         }
     }
 }
