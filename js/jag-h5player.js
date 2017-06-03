@@ -47,7 +47,7 @@ function getFullscreen() {
         } else if (document.msExitFullscreen) {
             document.msExitFullscreen();
         } else if (video[0].webkitDisplayingFullscreen) {
-            video[0].webkitExitFullscreen();
+            document.webkitExitFullscreen();
         }
     } else {
         /* Request fullscreen if corresponding element exists. */
