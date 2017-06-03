@@ -21,6 +21,7 @@ video {
     /* ios默认不显示视频，为ios添加背景。 */
     background: black;
     -webkit-user-select: none;
+    -webkit-touch-callout: none;
 }
 
 /* 2. 控制栏样式 */

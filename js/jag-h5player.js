@@ -36,22 +36,18 @@ var fullscreenItem = $('#fullscreen-item');
 function getFullscreen() {
     /* Check if the video is alrealy in fullscreen mode. */
     if (document.fullscreenElement || document.webkitFullscreenElement ||
-        document.mozFullScreenElement || document.msFullscreenElement) {
-        alert(111);
+        document.mozFullScreenElement || document.msFullscreenElement || video[0].webkitDisplayingFullscreen) {
         /* Exit fullscreen if corresponding element exists. */
         if (document.exitFullscreen) {
             document.exitFullscreen();
         } else if (document.webkitExitFullscreen) {
-            if (isIOS) {
-                /* ios调用退出全屏 */
-                video[0].webkitExitFullScreen();
-            } else {
-                document.webkitExitFullscreen();
-            }
+            document.webkitExitFullscreen();
         } else if (document.mozCancelFullScreen) {
             document.mozCancelFullScreen();
         } else if (document.msExitFullscreen) {
             document.msExitFullscreen();
+        } else if (video[0].webkitDisplayingFullscreen) {
+            video[0].webkitExitFullscreen();
         }
     } else {
         /* Request fullscreen if corresponding element exists. */
