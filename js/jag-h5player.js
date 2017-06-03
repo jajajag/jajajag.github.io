@@ -182,7 +182,11 @@ video.on('tap', function() {
                     /* Change the status of .*/
                     playOrPause();
 <<<<<<< HEAD
+<<<<<<< HEAD
                 } else {
+=======
+                }  else {
+>>>>>>> origin/master
 =======
                 }  else {
 >>>>>>> origin/master
