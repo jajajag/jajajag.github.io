@@ -45,14 +45,19 @@ function getFullscreen() {
         /* Request fullscreen if corresponding element exists. */
         if (fullscreenItem[0].requestFullscreen) {
             fullscreenItem[0].requestFullscreen();
+            alert(111);
         } else if (fullscreenItem[0].webkitRequestFullscreen) {
             fullscreenItem[0].webkitRequestFullscreen();
+            alert(222);
         } else if (fullscreenItem[0].mozRequestFullScreen) {
             fullscreenItem[0].mozRequestFullScreen();
+            alert(333);
         } else if (fullscreenItem[0].msRequestFullscreen) {
             fullscreenItem[0].msRequestFullscreen();
+            alert(444);
         } else if(fullscreenItem[0].webkitEnterFullscreen) {
             fullscreenItem[0].webkitEnterFullscreen();
+            alert(555);
         }
     }
 }
