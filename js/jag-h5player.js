@@ -181,15 +181,7 @@ video.on('tap', function() {
                 if (!isMobile) {
                     /* Change the status of .*/
                     playOrPause();
-<<<<<<< HEAD
-<<<<<<< HEAD
                 } else {
-=======
-                }  else {
->>>>>>> origin/master
-=======
-                }  else {
->>>>>>> origin/master
                     if (controlPanel.css('display') == 'none') {
                         controlPanel.css('display', 'block');
                         controlPanelTimer = 8000;
