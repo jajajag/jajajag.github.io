@@ -36,8 +36,7 @@ var fullscreenItem = $('#fullscreen-item');
 function getFullscreen() {
     /* Check if the video is alrealy in fullscreen mode. */
     if (document.fullscreenElement || document.webkitFullscreenElement ||
-        document.mozFullScreenElement || document.msFullscreenElement || document.webkitDisplayingFullscreen) {
-        alert(111);
+        document.mozFullScreenElement || document.msFullscreenElement || video[0].webkitDisplayingFullscreen) {
         /* Exit fullscreen if corresponding element exists. */
         if (document.exitFullscreen) {
             document.exitFullscreen();
@@ -47,6 +46,9 @@ function getFullscreen() {
             document.mozCancelFullScreen();
         } else if (document.msExitFullscreen) {
             document.msExitFullscreen();
+        } else if (video[0].webkitExitFullscreen) {
+            alert(222);
+            video[0].webkitExitFullscreen();
         }
     } else {
         /* Request fullscreen if corresponding element exists. */
