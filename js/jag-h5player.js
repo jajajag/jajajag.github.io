@@ -36,8 +36,7 @@ var fullscreenItem = $('#fullscreen-item');
 function getFullscreen() {
     /* Check if the video is alrealy in fullscreen mode. */
     if (document.fullscreenElement || document.webkitFullscreenElement ||
-        document.mozFullScreenElement || document.msFullscreenElement || video[0].webkitFullscreenElement) {
-        alert(111);
+        document.mozFullScreenElement || document.msFullscreenElement) {
         /* Exit fullscreen if corresponding element exists. */
         if (document.exitFullscreen) {
             document.exitFullscreen();
@@ -47,8 +46,6 @@ function getFullscreen() {
             document.mozCancelFullScreen();
         } else if (document.msExitFullscreen) {
             document.msExitFullscreen();
-        } else if (video[0].webkitExitFullScreen) {
-            video[0].webkitExitFullScreen();
         }
     } else {
         /* Request fullscreen if corresponding element exists. */
@@ -63,6 +60,7 @@ function getFullscreen() {
         } else if(video[0].webkitEnterFullscreen) {
             /* ios只允许调用video本身的全屏 */
             video[0].webkitEnterFullscreen();
+            video[0].webkitExitFullscreen();
         }
     }
 }
