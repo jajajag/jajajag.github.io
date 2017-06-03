@@ -2,6 +2,7 @@
 var video = $('#jag-video');
 /* 判断设备是否为移动设备。 */
 var isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+var isIOS = /iPhone|iPad|iPod/i.test(navigator.userAgent);
 
 /* 1. 可复用函数 */
 
@@ -17,11 +18,16 @@ function playOrPause() {
 
 /* 1.2 动态生成控制栏 */
 var controlPanel = $('#control-panel');
+var volumeBar = $('#volume-bar');
 
 function rebuildControlPanel() {
     /* 获取当前视频高和宽, 控制栏高度为50px。 */
     controlPanel.css('top', video.height() - 50);
     controlPanel.css('width', video.width());
+    if (isIOS) {
+        /* 如果是ios，则音量条颜色为灰色 */
+        volumeBar.css('color', 'gray');
+    }
 }
 
 /* 1.3 申请全屏 */
@@ -52,6 +58,7 @@ function getFullscreen() {
         } else if (fullscreenItem[0].msRequestFullscreen) {
             fullscreenItem[0].msRequestFullscreen();
         } else if(video[0].webkitEnterFullscreen) {
+            /* ios只允许调用video本身的全屏 */
             video[0].webkitEnterFullscreen();
         }
     }
@@ -217,8 +224,6 @@ video.on('taphold', function() {
     }
 });
 
-
-
 /* 5. 进度条点击事件 */
 
 /* 进度条点击事件(使用tap可避免同时触发进度条和进度条按钮事件)。 */
@@ -305,15 +310,18 @@ var volumeButton = $('#volume-button');
 volumeButton.on('tap', function() {
     if (video[0].muted) {
         video[0].muted = false;
-        $('#volume-bar').css('width', video[0].volume * 60);
+        volumeBar.css('width', video[0].volume * 60);
     } else {
         video[0].muted = true;
-        $('#volume-bar').css('width', 0);
+        volumeBar.css('width', 0);
     }
 });
 
 /* 6.2.2 音量条点击事件 */
 $('.volume-box').on('tap', function(event) {
+    if (isIOS) {
+        return;
+    }
     /* 点击事件的偏移量为相对文档的偏移量减去视频偏移量减去控制栏。 */
     var leftOffset = event.pageX - video.offset().left - 93;
     /* 音量条长度为60px。 */
@@ -323,7 +331,7 @@ $('.volume-box').on('tap', function(event) {
     /* 静音状态不修改音量条位置。 */
     if (!video[0].muted) {
         /* 音量条当前位置。 */
-        $('#volume-bar').css('width', leftOffset / 60 * 100 + '%');
+        volumeBar.css('width', leftOffset / 60 * 100 + '%');
     }
     /* 修改音量大小。 */
     video[0].volume = percentage;
