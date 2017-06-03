@@ -20,7 +20,9 @@ video {
     object-fit: fill;
     /* ios默认不显示视频，为ios添加背景。 */
     background: black;
+    /* 防止ios点击选中。 */
     -webkit-user-select: none;
+    /* 防止ios点击显示保存。 */
     -webkit-touch-callout: none;
 }
 

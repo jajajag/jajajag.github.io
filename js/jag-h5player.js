@@ -2,7 +2,6 @@
 var video = $('#jag-video');
 /* 判断设备是否为移动设备。 */
 var isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
-var isIOS = /iPhone|iPad|iPod/i.test(navigator.userAgent);
 
 /* 1. 可复用函数 */
 
@@ -24,10 +23,6 @@ function rebuildControlPanel() {
     /* 获取当前视频高和宽, 控制栏高度为50px。 */
     controlPanel.css('top', video.height() - 50);
     controlPanel.css('width', video.width());
-    if (isIOS) {
-        /* 如果是ios，则音量条颜色为灰色 */
-        volumeBar.css('color', 'gray');
-    }
 }
 
 /* 1.3 申请全屏 */
@@ -36,7 +31,8 @@ var fullscreenItem = $('#fullscreen-item');
 function getFullscreen() {
     /* Check if the video is alrealy in fullscreen mode. */
     if (document.fullscreenElement || document.webkitFullscreenElement ||
-        document.mozFullScreenElement || document.msFullscreenElement || video[0].webkitDisplayingFullscreen) {
+        document.mozFullScreenElement || document.msFullscreenElement) {
+        /* video[0].webkitDisplayingFullscreen */
         /* Exit fullscreen if corresponding element exists. */
         if (document.exitFullscreen) {
             document.exitFullscreen();
@@ -46,8 +42,6 @@ function getFullscreen() {
             document.mozCancelFullScreen();
         } else if (document.msExitFullscreen) {
             document.msExitFullscreen();
-        } else if (video[0].webkitDisplayingFullscreen) {
-            video[0].webkitExitFullscreen();
         }
     } else {
         /* Request fullscreen if corresponding element exists. */
@@ -220,7 +214,7 @@ video.on('dblclick', function() {
 });
 
 /* 4.3 移动端长按 */
-video.on('taphold', function() {
+fullscreenItem.on('taphold', function() {
     if (isMobile) {
         getFullscreen();
     }
@@ -320,8 +314,12 @@ volumeButton.on('tap', function() {
 });
 
 /* 6.2.2 音量条点击事件 */
+var isIOS = /iPhone|iPad|iPod/i.test(navigator.userAgent);
+
 $('.volume-box').on('tap', function(event) {
+    /* ios不允许浏览器调整音量。 */
     if (isIOS) {
+        volumeBar.css('width', 0);
         return;
     }
     /* 点击事件的偏移量为相对文档的偏移量减去视频偏移量减去控制栏。 */
