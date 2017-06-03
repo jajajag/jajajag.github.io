@@ -44,20 +44,15 @@ function getFullscreen() {
     } else {
         /* Request fullscreen if corresponding element exists. */
         if (fullscreenItem[0].requestFullscreen) {
-            alert(111);
             fullscreenItem[0].requestFullscreen();
         } else if (fullscreenItem[0].webkitRequestFullscreen) {
-            alert(222);
             fullscreenItem[0].webkitRequestFullscreen();
         } else if (fullscreenItem[0].mozRequestFullScreen) {
-            alert(333);
             fullscreenItem[0].mozRequestFullScreen();
         } else if (fullscreenItem[0].msRequestFullscreen) {
-            alert(444);
             fullscreenItem[0].msRequestFullscreen();
-        } else if(fullscreenItem[0].webkitEnterFullscreen) {
-            alert(555);
-            fullscreenItem[0].webkitEnterFullscreen();
+        } else if(video[0].webkitEnterFullscreen) {
+            video[0].webkitEnterFullscreen();
         }
     }
 }
@@ -499,3 +494,6 @@ $(document).on("msfullscreenchange", function () {
 fullscreenItem.contextmenu(function() {
     return false;
 });
+
+/* 8.4 在dom树加载完成后创建控制条 */
+$(document).ready(rebuildControlPanel);
