@@ -41,14 +41,16 @@ function getFullscreen() {
         if (document.exitFullscreen) {
             document.exitFullscreen();
         } else if (document.webkitExitFullscreen) {
-            document.webkitExitFullscreen();
+            if (isIOS) {
+                /* ios调用退出全屏 */
+                video[0].webkitExitFullscreen();
+            } else {
+                document.webkitExitFullscreen();
+            }
         } else if (document.mozCancelFullScreen) {
             document.mozCancelFullScreen();
         } else if (document.msExitFullscreen) {
             document.msExitFullscreen();
-        } else if(video[0].webkitExitFullscreen) {
-            /* ios调用退出全屏 */
-            video[0].webkitExitFullscreen();
         }
     } else {
         /* Request fullscreen if corresponding element exists. */
