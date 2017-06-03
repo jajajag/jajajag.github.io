@@ -3,7 +3,6 @@ var video = $('#jag-video');
 /* 判断设备是否为移动设备。 */
 var isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
 
-
 /* 1. 可复用函数 */
 
 /* 1.1 播放或暂停 */
@@ -52,6 +51,8 @@ function getFullscreen() {
             fullscreenItem[0].mozRequestFullScreen();
         } else if (fullscreenItem[0].msRequestFullscreen) {
             fullscreenItem[0].msRequestFullscreen();
+        } else if(fullscreenItem[0].webkitEnterFullscreen) {
+            fullscreenItem[0].webkitEnterFullscreen();
         }
     }
 }
@@ -180,9 +181,17 @@ video.on('tap', function() {
                 if (!isMobile) {
                     /* Change the status of .*/
                     playOrPause();
+<<<<<<< HEAD
                 } else {
-                    controlPanel.toggle();
-                    controlPanelTimer = 8000;
+=======
+                }  else {
+>>>>>>> origin/master
+                    if (controlPanel.css('display') == 'none') {
+                        controlPanel.css('display', 'block');
+                        controlPanelTimer = 8000;
+                    } else {
+                        controlPanel.css('display', 'none');
+                    }
                 }
             }
             /* Open the clock if the function ends. */
