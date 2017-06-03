@@ -34,6 +34,7 @@ function rebuildControlPanel() {
 var fullscreenItem = $('#fullscreen-item');
 
 function getFullscreen() {
+    alert(video[0].webkitDisplayingFullscreen);
     /* Check if the video is alrealy in fullscreen mode. */
     if (document.fullscreenElement || document.webkitFullscreenElement ||
         document.mozFullScreenElement || document.msFullscreenElement || video[0].webkitDisplayingFullscreen) {
