@@ -37,6 +37,7 @@ function getFullscreen() {
     /* Check if the video is alrealy in fullscreen mode. */
     if (document.fullscreenElement || document.webkitFullscreenElement ||
         document.mozFullScreenElement || document.msFullscreenElement) {
+        alert(111);
         /* Exit fullscreen if corresponding element exists. */
         if (document.exitFullscreen) {
             document.exitFullscreen();
