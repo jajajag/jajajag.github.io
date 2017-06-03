@@ -23,6 +23,13 @@ function rebuildControlPanel() {
     /* 获取当前视频高和宽, 控制栏高度为50px。 */
     controlPanel.css('top', video.height() - 50);
     controlPanel.css('width', video.width());
+<<<<<<< HEAD
+=======
+    if (isIOS) {
+        /* 如果是ios，则音量条颜色为灰色 */
+        volumeBar.css('background-color', 'gray');
+    }
+>>>>>>> origin/master
 }
 
 /* 1.3 申请全屏 */
@@ -31,8 +38,14 @@ var fullscreenItem = $('#fullscreen-item');
 function getFullscreen() {
     /* Check if the video is alrealy in fullscreen mode. */
     if (document.fullscreenElement || document.webkitFullscreenElement ||
+<<<<<<< HEAD
         document.mozFullScreenElement || document.msFullscreenElement) {
         /* video[0].webkitDisplayingFullscreen */
+=======
+        document.mozFullScreenElement || document.msFullscreenElement || video[0].webkitDisplayingFullscreen) {
+        alert(document.webkitExitFullscreen);
+        alert(video[0].webkitExitFullscreen);
+>>>>>>> origin/master
         /* Exit fullscreen if corresponding element exists. */
         if (document.exitFullscreen) {
             document.exitFullscreen();
@@ -42,6 +55,11 @@ function getFullscreen() {
             document.mozCancelFullScreen();
         } else if (document.msExitFullscreen) {
             document.msExitFullscreen();
+<<<<<<< HEAD
+=======
+        } else if (video[0].webkitDisplayingFullscreen) {
+            document.webkitExitFullscreen();
+>>>>>>> origin/master
         }
     } else {
         /* Request fullscreen if corresponding element exists. */
