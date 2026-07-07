@@ -49,12 +49,12 @@
       </aside>
     </section>
 
-    <section id="about" class="section">
+    <section id="about" class="section stable-i18n" data-stable-language="en">
       <div class="section-heading">
         <p class="eyebrow" data-i18n="about.eyebrow">关于</p>
         <h2 data-i18n="about.title">研究方向</h2>
       </div>
-      <div class="content-grid stable-i18n">
+      <div class="content-grid">
         <p data-i18n="about.body1">我的研究主要围绕强化学习（RL）算法的开发。我的主要研究兴趣是安全强化学习，同时也关注强化学习泛化、自然语言指导的强化学习、基于技能的强化学习以及跨领域强化学习。同时，我也对将强化学习技术应用于其他机器学习问题感兴趣，包括半监督学习和噪声标签学习。</p>
         <p data-i18n="about.body2">近期，我们研究了如果根据自然语言指导来改进强化学习智能体，从而提升决策效率、并在有限交互条件下增强泛化能力。同时，我依然对研究安全强化学习方法有兴趣，并希望能够使其应用于真实世界的决策场景中。</p>
       </div>
@@ -79,12 +79,12 @@
         <article class="publication"><div class="pub-year">2019</div><div><h3>Using Gradient Based Multikernel Gaussian Process and Meta-Acquisition Function to Accelerate SMBO</h3><p>Daning Cheng, <strong class="me">Hanping Zhang</strong>, Fen Xia, Shigang Li, Yunquan Zhang. <span class="venue">IEEE International Conference on Tools with Artificial Intelligence (ICTAI)</span>, 2019.</p></div></article>
 
         <h2 class="publication-group" data-i18n="publications.workshop">研讨会论文</h2>
-        <article class="publication"><div class="pub-year">2025</div><div><h3>LLM-Driven Policy Diffusion: Enhancing Generalization in Offline Reinforcement Learning</h3><p><strong class="me">Hanping Zhang</strong>, Yuhong Guo. <span class="venue">Advances in Neural Information Processing Systems (NeurIPS) Workshop on Adaptive Reinforcement Learning and Experimental Transfer (ARLET)</span>, 2025.</p></div></article>
-        <article class="publication"><div class="pub-year">2022</div><div><h3>Generalization of Reinforcement Learning with Policy-Aware Adversarial Data Augmentation</h3><p><strong class="me">Hanping Zhang</strong>, Yuhong Guo. <span class="venue">International Conference on Machine Learning (ICML) Workshop on Data-Efficient Reinforcement Learning (DARL)</span>, 2022.</p></div></article>
+        <article class="publication"><div class="pub-year">2025</div><div><h3>LLM-Driven Policy Diffusion: Enhancing Generalization in Offline Reinforcement Learning</h3><p><strong class="me">Hanping Zhang</strong>, Yuhong Guo. <span class="venue">Aligning Reinforcement Learning Experimentalists and Theorists Workshop (NeurIPS)</span>, 2025.</p></div></article>
+        <article class="publication"><div class="pub-year">2022</div><div><h3>Generalization of Reinforcement Learning with Policy-Aware Adversarial Data Augmentation</h3><p><strong class="me">Hanping Zhang</strong>, Yuhong Guo. <span class="venue">Decision Awareness in Reinforcement Learning Workshop (ICML)</span>, 2022.</p></div></article>
       </div>
     </section>
 
-    <section id="education" class="section stable-i18n">
+    <section id="education" class="section">
       <div class="section-heading">
         <p class="eyebrow" data-i18n="education.eyebrow">背景</p>
         <h2 data-i18n="education.title">教育经历</h2>
@@ -96,7 +96,7 @@
         <div class="timeline-item"><span class="time" data-i18n="education.time4">2013 年 9 月 - 2015 年 7 月</span><h3 data-i18n="education.school4">四川大学</h3><p data-i18n="education.degree4">计算机科学理学学士</p><p class="location" data-i18n="education.location4">成都，中国四川省</p><p class="muted" data-i18n="education.note4">后转入马里兰大学帕克分校。</p></div>
       </div>
 
-      <h3 class="subsection-title" data-i18n="experience.title">工作经历</h3>
+      <h2 class="subsection-title" data-i18n="experience.title">工作经历</h2>
       <div class="timeline">
         <div class="timeline-item">
           <span class="time" data-i18n="experience.time1">2018 年 6 月 - 2018 年 12 月</span>
@@ -190,7 +190,7 @@
         "profile.degree": "Ph.D. Researcher, Computer Science",
         "profile.school": "Carleton University",
         "about.eyebrow": "About",
-        "about.title": "Research Focus",
+        "about.title": "Research Interests",
         "about.body1": "My research focuses on the development of reinforcement learning (RL) algorithms. My primary research interest is safe RL, with broader interests in RL generalization, language-guided RL, skill-based RL, and cross-domain RL. I am also interested in applying RL techniques to other machine learning problems, including semi-supervised learning and noisy label learning.",
         "about.body2": "More recently, my research has explored how natural language guidance can improve RL agents by enabling more efficient decision making and stronger generalization with limited interaction. I am still interested in developing reliable safe reinforcement learning methods that can be applied to real-world decision-making scenarios.",
         "publications.eyebrow": "Publications",
@@ -269,6 +269,11 @@
       });
       if (window.innerWidth <= 860) return;
       blocks.forEach((block) => {
+        const stableLanguage = block.dataset.stableLanguage;
+        if (stableLanguage) {
+          block.style.minHeight = `${Math.ceil(translatedCloneHeight(block, stableLanguage))}px`;
+          return;
+        }
         const zhHeight = translatedCloneHeight(block, "zh");
         const enHeight = translatedCloneHeight(block, "en");
         block.style.minHeight = `${Math.ceil(Math.max(zhHeight, enHeight))}px`;
